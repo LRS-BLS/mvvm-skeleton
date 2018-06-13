@@ -1,0 +1,15 @@
+<resources>
+	<string name="app_name">InPoster</string>
+
+	<!-- TODO: Remove or change this placeholder text -->
+	<string name="hello_camera_fragment">Hello Camera Screen fragment</string>
+	<string name="hello_preview_fragment">Hello Preview Screen fragment</string>
+	<string name="camera_go_to_preview_button">Go To Preview</string>
+	<string name="preview_purple_button">Purple</string>
+	<string name="preview_blue_button">Blue</string>
+	<string name="preview_yellow_button">Yellow</string>
+	<string name="preview_green_button">Green</string>
+	<string name="sample_grow_up">Grow Up</string>
+	<string name="camera_go_to_sample">Go To Sample</string>
+	<string name="sample_do_something_else">Do Something Else</string>
+</resources>

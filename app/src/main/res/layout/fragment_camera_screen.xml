@@ -1,0 +1,55 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	tools:context="zawalich.roszak.inposter.views.CameraScreenFragment">
+
+	<data>
+		<variable
+			name="viewModel"
+			type="zawalich.roszak.inposter.viewmodels.CameraScreenViewModel"/>
+		<import type="android.view.View"/>
+	</data>
+	<android.support.constraint.ConstraintLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+
+		<zawalich.roszak.inposter.opencv.OCVCameraView
+			android:id="@+id/cameraView"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			app:layout_constraintBottom_toTopOf="@id/button"
+			app:layout_constraintTop_toTopOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:show_fps="false"/>
+		<!--app:component="@{viewModel.component}"
+		app:listener="@{viewModel.listener}"
+		app:takePhoto="@{viewModel.takePhoto}"-->
+
+		<Button
+			android:id="@+id/button"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="8dp"
+			android:layout_marginEnd="8dp"
+			android:layout_marginStart="8dp"
+			android:onClick="@{()-> viewModel.goToSample()}"
+			android:text="@string/camera_go_to_sample"
+			app:layout_constraintBottom_toTopOf="@id/preview_button"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent" />
+		<Button
+			android:id="@+id/preview_button"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="8dp"
+			android:layout_marginEnd="8dp"
+			android:layout_marginStart="8dp"
+            android:enabled="@{viewModel.buttonEnabled}"
+			android:onClick="@{()-> viewModel.goToPreview()}"
+			android:text="@string/camera_go_to_preview_button"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent" />
+	</android.support.constraint.ConstraintLayout>
+</layout>

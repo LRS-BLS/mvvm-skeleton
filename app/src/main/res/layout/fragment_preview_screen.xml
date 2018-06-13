@@ -1,0 +1,71 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	tools:context="zawalich.roszak.inposter.views.PreviewScreenFragment">
+
+	<data>
+		<variable
+			name="viewModel"
+			type="zawalich.roszak.inposter.viewmodels.PreviewScreenViewModel"/>
+		<import type="android.view.View"/>
+		<import type="zawalich.roszak.inposter.model.InposterColor" />
+	</data>
+
+	<android.support.constraint.ConstraintLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+
+		<ImageView
+			android:id="@+id/appCompatImageView"
+			android:layout_width="0dp"
+			android:layout_height="0dp"
+			app:imageUrl="@{viewModel.path}"
+			app:inposterColor="@{viewModel.color}"
+			app:inposterValue="@{viewModel.value}"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintHorizontal_bias="1.0"
+			app:layout_constraintLeft_toLeftOf="parent"
+			app:layout_constraintRight_toRightOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			app:layout_constraintVertical_bias="0.0" />
+
+		<Button
+			android:id="@+id/purple"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:onClick="@{(view)->viewModel.changeColor(InposterColor.Purple)}"
+			android:text="@string/preview_purple_button"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintEnd_toStartOf="@id/blue"
+			app:layout_constraintBottom_toBottomOf="parent"  />
+
+		<Button
+			android:id="@+id/blue"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:onClick="@{(view)->viewModel.changeColor(InposterColor.Blue)}"
+			android:text="@string/preview_blue_button"
+			app:layout_constraintStart_toEndOf="@id/purple"
+			app:layout_constraintBottom_toBottomOf="parent"  />
+
+		<Button
+			android:id="@+id/yellow"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:onClick="@{(view)->viewModel.changeColor(InposterColor.Yellow)}"
+			android:text="@string/preview_yellow_button"
+			app:layout_constraintStart_toEndOf="@id/blue"
+			app:layout_constraintBottom_toBottomOf="parent"  />
+
+		<Button
+			android:id="@+id/green"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="8dp"
+			android:onClick="@{(view)->viewModel.changeColor(InposterColor.Green)}"
+			android:text="@string/preview_green_button"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toEndOf="@id/yellow"
+			app:layout_constraintBottom_toBottomOf="parent" />
+	</android.support.constraint.ConstraintLayout>
+</layout>
