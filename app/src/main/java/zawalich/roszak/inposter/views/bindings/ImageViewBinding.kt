@@ -19,7 +19,37 @@ class BitmapTransformation(val color: InposterColor ,val value : InposterValue) 
 	override fun transform(source: Bitmap?): Bitmap {
 		val dessaturated = dessaturate(source!!)
 		val colorized = colorize(dessaturated)
-		return colorized
+		val withTexts = drawTexts(colorized)
+		return withTexts
+	}
+
+	private fun drawTexts(source: Bitmap): Bitmap {
+		val result = Bitmap.createBitmap(source.width, source.height,
+				Bitmap.Config.ARGB_8888);
+
+		val paint = Paint()
+		paint.color = getTextColor()// Text Color
+		paint.textSize =70f// Text Size
+		paint.xfermode = PorterDuffXfermode(PorterDuff.Mode.SRC_OVER) // Text Overlapping Pattern
+
+
+		val canvas = Canvas(result)
+		canvas.drawBitmap(source, 0f, 0f, paint)
+		canvas.rotate(90f, source.width /2f, source.height /2f)
+		canvas.drawText(value.text, source.width * (1f/3f), source.height * (1f/3f), paint)
+		canvas.drawText(value.text2, source.width * (1f/3f), source.height * (2f/3f), paint)
+		canvas.rotate(-90f,source.width /2f, source.height /2f)
+		source.recycle()
+		return result
+	}
+
+	private fun getTextColor(): Int {
+		return when(color){
+			InposterColor.Blue -> Color.YELLOW
+			InposterColor.Purple -> Color.GREEN
+			InposterColor.Green -> Color.BLUE
+			InposterColor.Yellow -> Color.BLUE
+		}
 	}
 
 	fun colorize(source: Bitmap) : Bitmap{
@@ -78,7 +108,7 @@ fun loadImageFromUrl(view: ImageView,
 			.load(parsedUri)
 			.transform(BitmapTransformation(color,value))
 			.fit()
-			.centerCrop()
+			.centerInside()
 			.error(R.drawable.ic_arrow_down_24dp)
 			.placeholder(R.drawable.ic_arrow_down_24dp)
 			.into(view)

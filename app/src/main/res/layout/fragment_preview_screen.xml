@@ -23,7 +23,7 @@
 			app:inposterColor="@{viewModel.color}"
 			app:inposterValue="@{viewModel.value}"
 			app:layout_constraintBottom_toBottomOf="parent"
-			app:layout_constraintHorizontal_bias="1.0"
+			app:layout_constraintHorizontal_bias="0.0"
 			app:layout_constraintLeft_toLeftOf="parent"
 			app:layout_constraintRight_toRightOf="parent"
 			app:layout_constraintTop_toTopOf="parent"
@@ -31,41 +31,47 @@
 
 		<Button
 			android:id="@+id/purple"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
+			android:layout_width="45dp"
+			android:layout_height="45dp"
+			android:layout_margin="8dp"
+			android:layout_marginBottom="40dp"
+			android:layout_marginEnd="8dp"
+			android:background="@android:color/holo_purple"
 			android:onClick="@{(view)->viewModel.changeColor(InposterColor.Purple)}"
-			android:text="@string/preview_purple_button"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintEnd_toStartOf="@id/blue"
-			app:layout_constraintBottom_toBottomOf="parent"  />
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toStartOf="@+id/green" />
 
 		<Button
 			android:id="@+id/blue"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
+			android:layout_width="45dp"
+			android:layout_height="45dp"
+			android:layout_margin="8dp"
+			android:background="@android:color/holo_blue_dark"
 			android:onClick="@{(view)->viewModel.changeColor(InposterColor.Blue)}"
-			android:text="@string/preview_blue_button"
-			app:layout_constraintStart_toEndOf="@id/purple"
-			app:layout_constraintBottom_toBottomOf="parent"  />
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toStartOf="@+id/purple"
+			app:layout_constraintLeft_toRightOf="@id/purple"
+			app:layout_constraintStart_toEndOf="@+id/yellow" />
 
 		<Button
 			android:id="@+id/yellow"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
+			android:layout_width="45dp"
+			android:layout_height="45dp"
+			android:layout_margin="8dp"
+			android:background="@android:color/holo_orange_light"
 			android:onClick="@{(view)->viewModel.changeColor(InposterColor.Yellow)}"
-			android:text="@string/preview_yellow_button"
-			app:layout_constraintStart_toEndOf="@id/blue"
-			app:layout_constraintBottom_toBottomOf="parent"  />
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toStartOf="@+id/purple"
+			app:layout_constraintStart_toStartOf="@+id/appCompatImageView" />
 
 		<Button
 			android:id="@+id/green"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_marginStart="8dp"
+			android:layout_width="45dp"
+			android:layout_height="45dp"
+			android:layout_margin="8dp"
+			android:background="@android:color/holo_green_dark"
 			android:onClick="@{(view)->viewModel.changeColor(InposterColor.Green)}"
-			android:text="@string/preview_green_button"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintStart_toEndOf="@id/yellow"
-			app:layout_constraintBottom_toBottomOf="parent" />
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="@+id/appCompatImageView" />
 	</android.support.constraint.ConstraintLayout>
 </layout>
