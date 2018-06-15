@@ -33,7 +33,7 @@
 			app:layout_constraintStart_toStartOf="parent"
 			app:layout_constraintTop_toTopOf="parent"
 			app:layout_constraintBottom_toBottomOf="parent"
-			app:viewmodel="@{viewModel.mainRegionViewModel}" />
+			android:viewmodel="@{viewModel.mainRegionViewModel}" />
 
 		<zawalich.roszak.inposter.widgets.RegionFrameLayout
 			android:id="@+id/dialogContainer"
@@ -44,7 +44,7 @@
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintStart_toStartOf="parent"
 			app:layout_constraintTop_toTopOf="parent"
-			app:viewmodel="@{viewModel.dialogRegionViewModel}" />
+			android:viewmodel="@{viewModel.dialogRegionViewModel}" />
 
 	</android.support.constraint.ConstraintLayout>
 </layout>

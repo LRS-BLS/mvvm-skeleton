@@ -8,8 +8,10 @@ import android.support.v7.app.AppCompatActivity
 import android.util.AttributeSet
 import android.view.inputmethod.InputMethodManager
 import android.widget.FrameLayout
-import zawalich.roszak.inposter.navigation.ScreenContextEnum
+import zawalich.roszak.inposter.InPosterApplication
+import zawalich.roszak.inposter.navigation.ViewClassResolverStrategy
 import zawalich.roszak.inposter.views.BaseView
+import javax.inject.Inject
 
 class RegionFrameLayout : FrameLayout {
 	constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
@@ -18,7 +20,22 @@ class RegionFrameLayout : FrameLayout {
 
 	constructor(context: Context) : super(context)
 
-	fun setviewmodel(vm: ViewModel?) {
+	var viewmodel: ViewModel?
+		get() = getvm()
+		set(vm) = setvm(vm)
+
+	@Inject
+	lateinit var viewClassResolverStrategy: ViewClassResolverStrategy
+
+	init {
+		InPosterApplication.appComponent.inject(this)
+	}
+
+	fun getvm(): ViewModel? {
+		return tag as ViewModel?
+	}
+
+	fun setvm(vm: ViewModel?) {
 
 		if (vm == null) {
 			clearRegion(this)
@@ -30,14 +47,12 @@ class RegionFrameLayout : FrameLayout {
 			return
 		}
 
-		val contextBinding = ScreenContextEnum.BindingType.values().first {
-			it.viewModelClass == vm::class.java
-		}
+		val viewClass = viewClassResolverStrategy.findBaseViewForViewModel(vm)
 
-		changeRegionContext(this, contextBinding.viewClass, vm)
+		changeRegionContext(this, viewClass, vm)
 	}
 
-	fun clearRegion(view: FrameLayout) {
+	private fun clearRegion(view: FrameLayout) {
 		hideSoftKeyboard(view.context as Activity)
 		val fm = (view.context as AppCompatActivity).supportFragmentManager
 		val ft = fm.beginTransaction()
@@ -47,10 +62,10 @@ class RegionFrameLayout : FrameLayout {
 		ft.commit()
 	}
 
-	fun changeRegionContext(view: FrameLayout, viewClass: Class<*>, vm: ViewModel) {
+	private fun changeRegionContext(view: FrameLayout, viewClass: Class<*>, vm: ViewModel) {
 
 		hideSoftKeyboard(view.context as Activity)
-		val oldDefinition = view.tag as ScreenContextEnum.BindingType?
+		val oldDefinition = view.tag as ViewModel?
 
 		if (oldDefinition == vm) {
 			//L.d(L.UI, "same screen as previous, change screen aborted")
