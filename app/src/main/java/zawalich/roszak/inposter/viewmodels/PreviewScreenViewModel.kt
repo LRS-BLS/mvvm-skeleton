@@ -32,5 +32,11 @@ class PreviewScreenViewModel(val params : PreviewContextModel) : BaseViewModel()
 
 	fun changeColor(newColor : InposterColor){
 		color.set(newColor)
+		value.set(randomValue())
+	}
+
+	private fun randomValue(): InposterValue? {
+		val values = InposterValue.values()
+		return values[Math.floor(Math.random()*values.count()).toInt()]
 	}
 }

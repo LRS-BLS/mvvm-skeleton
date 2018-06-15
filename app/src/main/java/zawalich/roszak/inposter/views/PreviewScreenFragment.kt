@@ -5,7 +5,7 @@ import zawalich.roszak.inposter.databinding.FragmentPreviewScreenBinding
 import zawalich.roszak.inposter.viewmodels.PreviewScreenViewModel
 
 class PreviewScreenFragment :
-		BaseFragment<FragmentPreviewScreenBinding,PreviewScreenViewModel>() {
+		BaseFragment<FragmentPreviewScreenBinding, PreviewScreenViewModel>() {
 
 	override val bindingClassToken: Class<FragmentPreviewScreenBinding>
 		get() = FragmentPreviewScreenBinding::class.java

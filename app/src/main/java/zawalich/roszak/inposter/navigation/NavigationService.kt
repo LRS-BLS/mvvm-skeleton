@@ -1,6 +1,5 @@
 package zawalich.roszak.inposter.navigation
 
-import android.arch.lifecycle.ViewModel
 import zawalich.roszak.inposter.viewmodels.BaseViewModel
 
 

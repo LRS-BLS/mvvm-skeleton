@@ -12,4 +12,5 @@
 	<string name="sample_grow_up">Grow Up</string>
 	<string name="camera_go_to_sample">Go To Sample</string>
 	<string name="sample_do_something_else">Do Something Else</string>
+	<string name="do_something_else">Do something else</string>
 </resources>

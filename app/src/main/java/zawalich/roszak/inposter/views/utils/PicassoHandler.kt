@@ -12,35 +12,6 @@ import zawalich.roszak.inposter.model.InposterValue
 
 
 
-class InposterTransformation(val color: InposterColor, val value : InposterValue) : Transformation{
-	override fun key(): String {
-		return color.toString() + " " + value.toString()
-	}
-
-	override fun transform(source: Bitmap?): Bitmap {
-		val result = Bitmap.createBitmap(source!!.width, source.height, Bitmap.Config.ARGB_8888);
-
-
-		val src = floatArrayOf(
-				0.21f, 0.72f, 0.07f, 0f, 0f,
-				0.21f, 0.72f, 0.07f, 0f, 0f,
-				0.21f, 0.72f, 0.07f, 0f, 0f,
-				0f, 0f, 0f, 1f, 0f)
-		val cm = ColorMatrix(src)
-		val filter = ColorMatrixColorFilter(cm)
-		val paint = Paint()
-		paint.colorFilter = filter
-		paint.xfermode = PorterDuffXfermode(PorterDuff.Mode.DST_IN)
-
-		val canvas = Canvas(result)
-		canvas.drawBitmap(source, 0f, 0f, paint)
-
-		source.recycle()
-		return result;
-	}
-
-}
-
 object PicassoHandler {
 	const val BYTE_ARRAY = "byte_array"
 	const val NOT_ENCRYPTED = "not_encrypted"

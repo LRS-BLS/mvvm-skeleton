@@ -25,7 +25,7 @@
 			app:layout_constraintRight_toRightOf="parent"
 			app:layout_constraintTop_toTopOf="parent" />
 
-		<FrameLayout
+		<zawalich.roszak.inposter.widgets.RegionFrameLayout
 			android:id="@+id/mainContainer"
 			android:layout_width="0dp"
 			android:layout_height="0dp"
@@ -35,7 +35,7 @@
 			app:layout_constraintBottom_toBottomOf="parent"
 			app:viewmodel="@{viewModel.mainRegionViewModel}" />
 
-		<FrameLayout
+		<zawalich.roszak.inposter.widgets.RegionFrameLayout
 			android:id="@+id/dialogContainer"
 			android:layout_width="0dp"
 			android:layout_height="0dp"

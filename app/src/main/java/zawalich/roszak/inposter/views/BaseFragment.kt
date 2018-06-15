@@ -12,12 +12,12 @@ import android.view.ViewGroup
 /**
  *	Default implementation of a fragment that creates a layout and binds it to a ViewModel.
  */
-abstract class BaseFragment<B: ViewDataBinding, VM: ViewModel> : Fragment(), BaseView {
+abstract class BaseFragment<B : ViewDataBinding, VM : ViewModel> : Fragment(), BaseView {
 	abstract val bindingClassToken: Class<B>
 	abstract val viewModelClassToken: Class<VM>
-	abstract val layoutId : Int
+	abstract val layoutId: Int
 
-	open lateinit var binding : B
+	open lateinit var binding: B
 	open lateinit var vm: ViewModel
 
 	override fun setViewModel(viewModel: ViewModel) {
