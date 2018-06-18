@@ -90,6 +90,6 @@ dependencies {
     testImplementation "android.arch.core:core-testing:1.1.1"
     // Test helpers for Room
     testImplementation "android.arch.persistence.room:testing:1.1.0"
-    implementation "org.jetbrains.kotlin:kotlin-reflect:1.2.41"
+    implementation "org.jetbrains.kotlin:kotlin-reflect:1.2.50"
     implementation "com.squareup.picasso:picasso:2.5.2"
 }

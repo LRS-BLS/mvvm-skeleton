@@ -20,6 +20,9 @@ class RegionFrameLayout : FrameLayout {
 
 	constructor(context: Context) : super(context)
 
+	//Tag used to identify a fragment that is displayed in this region.
+	private val fragmentTag: String get() = "regionFragmentTag" + this.id
+
 	var viewmodel: ViewModel?
 		get() = getvm()
 		set(vm) = setvm(vm)
@@ -56,7 +59,8 @@ class RegionFrameLayout : FrameLayout {
 		hideSoftKeyboard(view.context as Activity)
 		val fm = (view.context as AppCompatActivity).supportFragmentManager
 		val ft = fm.beginTransaction()
-		for (fragment in fm.fragments) {
+		val fragment = fm.findFragmentByTag(fragmentTag)
+		if (fragment != null) {
 			ft.remove(fragment)
 		}
 		ft.commit()
@@ -69,7 +73,7 @@ class RegionFrameLayout : FrameLayout {
 
 		if (oldDefinition == vm) {
 			//L.d(L.UI, "same screen as previous, change screen aborted")
-			return
+			//return
 		}
 
 		val fm = (view.context as AppCompatActivity).supportFragmentManager
@@ -78,7 +82,7 @@ class RegionFrameLayout : FrameLayout {
 		val fragment = constructor.newInstance()
 		(fragment as BaseView).setViewModel(vm)
 
-		ft.replace(view.id, fragment as Fragment)
+		ft.replace(view.id, fragment as Fragment, fragmentTag)
 		ft.commit()
 
 		view.tag = vm

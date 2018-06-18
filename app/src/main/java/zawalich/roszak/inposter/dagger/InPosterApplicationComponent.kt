@@ -15,4 +15,6 @@ interface InPosterApplicationComponent {
 	fun inject(viewModel: PreviewScreenViewModel)
 	fun inject(viewModel: SampleViewModel)
 	fun inject(viewModel: RationaleDialogViewModel)
+	fun inject(viewModel: ColorPickerDialogViewModel)
+	fun inject(viewModel: ValuePickerDialogViewModel)
 }

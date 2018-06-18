@@ -1,5 +1,8 @@
 package zawalich.roszak.inposter.navigation
 
+import android.accessibilityservice.AccessibilityService
+import zawalich.roszak.inposter.model.InposterColor
+import zawalich.roszak.inposter.model.InposterValue
 import zawalich.roszak.inposter.navigation.ContextModels.PreviewContextModel
 import zawalich.roszak.inposter.navigation.ContextModels.RationaleDialogContextModel
 import zawalich.roszak.inposter.viewmodels.*
@@ -19,7 +22,16 @@ sealed class ScreenContextEnum(val type: BindingType, val viewModelFactory: () -
 		),
 		RATIONALE_DIALOG(
 				RationaleDialogViewModel::class.java,
-				RationaleDialogFragment::class.java),
+				RationaleDialogFragment::class.java
+		),
+		VALUE_PICKER_DIALOG(
+				ValuePickerDialogViewModel::class.java,
+				ValuePickerDialogFragment::class.java
+		),
+		COLOR_PICKER_DIALOG(
+				ColorPickerDialogViewModel::class.java,
+				ColorPickerDialogFragment::class.java
+		),
 		SAMPLE(
 				SampleViewModel::class.java,
 				SampleFragment::class.java
@@ -38,4 +50,9 @@ sealed class ScreenContextEnum(val type: BindingType, val viewModelFactory: () -
 	data class Sample(val contextModel: ContextModel = ContextModel.Empty) : ScreenContextEnum(BindingType.SAMPLE,
 			{ SampleViewModel() })
 
+	data class ValuePickerDialog(val resultHandler: (InposterValue) -> Unit) : ScreenContextEnum(BindingType.VALUE_PICKER_DIALOG,
+			{ ValuePickerDialogViewModel(resultHandler) })
+
+	data class ColorPickerDialog(val resultHandler: (InposterColor) -> Unit) : ScreenContextEnum(BindingType.COLOR_PICKER_DIALOG,
+			{ ColorPickerDialogViewModel(resultHandler) })
 }

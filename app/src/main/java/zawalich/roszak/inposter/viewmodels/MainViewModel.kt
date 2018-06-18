@@ -40,7 +40,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 					}
 				})
 
-		navigationService.navigate(ScreenRegion.Main, ScreenContextEnum.Camera())
+		navigationService.navigate(ScreenRegion.Main, ScreenContextEnum.Sample())
 	}
 
 	fun handleBackButton(): Boolean {
